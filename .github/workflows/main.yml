@@ -31,13 +31,7 @@ jobs:
         run: |
           zip -r function.zip .
 
-      - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v17
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: MyApplication
-          environment_name: MyApplication-Environment
-          version_label: ${{ github.sha }}
-          region: us-east-1
-          deployment_package: function.zip
+      - name: lambda update
+        run: |
+          pip3 install awscli
+          aws lambda update-function-code --function-name MyWeb --zip-file fileb://package.zip --publish
