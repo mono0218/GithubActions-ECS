@@ -34,4 +34,4 @@ jobs:
       - name: lambda update
         run: |
           pip3 install awscli
-          aws lambda update-function-code --function-name MyWeb --zip-file fileb://package.zip --publish
+          aws lambda update-function-code --function-name MyWeb --zip-file function.zip --publish
